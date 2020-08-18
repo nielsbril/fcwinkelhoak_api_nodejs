@@ -1,0 +1,56 @@
+version: "2.4"
+
+x-default-options: &default-options
+  tty: true
+  logging:
+    options:
+      max-size: "10m"
+      max-file: "3"
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    image: fcwinkelhoak-api-server
+    container_name: fcwinkelhoak-api-server
+    env_file: ./server/.env/local.env
+    init: true
+    ports:
+      # App port
+      - 4444:4444
+      # Debug port
+      - 9229:9229
+    networks:
+      - fcwinkelhoak
+    volumes:
+      # Delegated option for faster mounted volumes
+      - ./server:/app/server:delegated
+      # Because `yarn install`
+      - ./server/package.json:/app/package.json
+      - ./server/yarn.lock:/app/yarn.lock
+      # Block local modules
+      - /app/server/node_modules
+    depends_on:
+      mongo:
+        condition: service_healthy
+    <<: *default-options
+
+  mongo:
+    image: mongo:4.2
+    container_name: fcwinkelhoak-api-mongodb
+    ports:
+      - 44444:27017
+    networks:
+      - fcwinkelhoak
+    volumes:
+      # Database
+      - ./data/db:/data/db/
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+    logging:
+      driver: none
+
+networks:
+  fcwinkelhoak:
+    external: true

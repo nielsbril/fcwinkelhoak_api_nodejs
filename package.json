@@ -1,0 +1,25 @@
+{
+  "name": "fcwinkelhoak_api_nodejs",
+  "version": "0.0.0",
+  "description": "FC Winkelhoak API, built in Node.js using Nest.js",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./ --ext .js --ext .json --config ./.eslintrc.json --no-eslintrc",
+    "lint:fix": "yarn run lint --fix"
+  },
+  "author": "Niels Bril <niels.bril@studiohyperdrive.be>",
+  "contributors": [
+    "Niels Bril <niels.bril@studiohyperdrive.be>"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@studiohyperdrive/commitlint-config": "1.0.0",
+    "commitlint": "8.3.5",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-json": "2.1.1",
+    "husky": "4.2.5"
+  },
+  "license": "ISC"
+}

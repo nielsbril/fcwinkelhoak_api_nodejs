@@ -1,0 +1,47 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Test (server) (Docker)",
+			"type": "shell",
+			"command": "docker-compose exec server yarn run test",
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "Lint (server) (Docker)",
+			"type": "shell",
+			"command": "docker-compose exec server yarn run lint",
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "Build image (server) (Docker)",
+			"type": "shell",
+			"command": "docker build -t roularta-one-api-poc -f ./server/Dockerfile ./server",
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		},
+		{
+			"label": "Run image (server) (Docker)",
+			"type": "shell",
+			"command": "docker run --init --rm -it --env-file=./server/.env/local.env roularta-one-api-poc",
+			"group": "build",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated"
+			}
+		}
+	]
+}

@@ -1,0 +1,87 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "tsconfig.json",
+		"sourceType": "module"
+	},
+	"extends": [
+		"airbnb-typescript/base",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:eslint-comments/recommended",
+		"plugin:jest/recommended",
+		"plugin:promise/recommended",
+		"plugin:import/errors",
+		"plugin:import/typescript",
+		"plugin:import/warnings"
+	],
+	"plugins": [
+		"@typescript-eslint",
+		"eslint-comments",
+		"import",
+		"jest",
+		"promise"
+	],
+	"root": true,
+	"env": {
+		"node": true,
+		"jest": true
+	},
+	"settings": {
+		"import/parsers": {
+			"@typescript-eslint/parser": [
+				".js",
+				".ts"
+			]
+		},
+		"import/resolver": {
+			"typescript": {}
+		}
+	},
+	"rules": {
+		// General
+		"comma-dangle": [2, {
+			"arrays": "always-multiline",
+			"objects": "always-multiline",
+			"imports": "always-multiline",
+			"exports": "always-multiline",
+			"functions": "always-multiline"
+		}],
+		"max-len": [2, 160, 2, {
+			"ignoreUrls": true,
+			"ignoreComments": true,
+			"ignoreRegExpLiterals": true,
+			"ignoreStrings": true,
+			"ignoreTemplateLiterals": true
+		}],
+		"class-methods-use-this": 0,
+		"consistent-return": 0,
+		"object-curly-newline": 0,
+		"no-bitwise": 0,
+		"no-useless-return": 0,
+		// Indent
+		"indent": 0,
+		"@typescript-eslint/indent": [2, "tab"],
+		"no-tabs": [1, {
+			"allowIndentationTabs": true
+		}],
+		// Import
+		"import/extensions": 0,
+		"import/prefer-default-export": 0,
+		"import/order": [2, {
+			"groups": [
+				["builtin", "external"],
+				["internal", "unknown"],
+				["parent", "sibling", "index"]
+			],
+			"newlines-between": "always"
+		}],
+		// Promises
+		"promise/no-callback-in-promise": 0,
+		// TypeScript
+		"@typescript-eslint/dot-notation": 0,
+		"@typescript-eslint/lines-between-class-members": 0,
+		// Jest
+		"jest/no-test-callback": 0
+	}
+}

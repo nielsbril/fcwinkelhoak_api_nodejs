@@ -1,0 +1,23 @@
+FROM node:erbium-alpine
+
+# Expose ports
+EXPOSE 4444 9229
+
+# Install latest yarn version
+RUN yarn global upgrade --silent yarn@latest
+
+# Install dependencies
+RUN mkdir /app && chown node:node /app
+WORKDIR /app
+USER node
+COPY --chown=node:node package.json yarn.lock .yarnrc ./
+RUN yarn install --silent
+ENV PATH /app/node_modules/.bin:$PATH
+
+# Set working directory for source code
+RUN mkdir /app/server
+WORKDIR /app/server
+COPY --chown=node:node ./ ./
+
+# Start application with live reload & debugger enabled
+CMD nest start --watch --debug 0.0.0.0:9229

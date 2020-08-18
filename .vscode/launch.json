@@ -1,0 +1,17 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"address": "0.0.0.0",
+			"localRoot": "${workspaceRoot}/server",
+			"name": "Debug (server) (Docker)",
+			"port": 9229,
+			"protocol": "inspector",
+			"remoteRoot": "/app/server",
+			"request": "attach",
+			"restart": true,
+			"stopOnEntry": false,
+			"type": "node"
+		}
+	]
+}
